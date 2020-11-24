@@ -1,16 +1,18 @@
-// InApp Imports
 import {
   FETCH_START,
   FETCH_END,
   FETCH_ERROR,
+  SET_SEARCHED_USER_DATA,
+  SET_USER_REPO_DATA
 
 } from "../../constants/ActionTypes";
 
-// Defining the Initial State
+
 let initState = {
  isFetchingData: false,
+ serachedUserData:{},
+ userRepoData:[]
 };
-
 
 const app = (state = initState, action) => {
   switch (action.type) {
@@ -35,6 +37,17 @@ const app = (state = initState, action) => {
         isFetchedError: true,
         fetchError: action.payload
       };
+    
+    case SET_SEARCHED_USER_DATA:
+        return {
+            ...state,
+            serachedUserData:action.payload
+        }  
+    case SET_USER_REPO_DATA:
+      return {
+          ...state,
+          userRepoData:action.payload
+      }  
     default:
       return state;
   }
